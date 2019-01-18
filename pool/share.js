@@ -88,7 +88,7 @@ function getTargetHex(miner) {
     let buffArray = buff.toByteArray().reverse();
     let buffReversed = Buffer.from(buffArray);
     miner.target = buffReversed.readUInt32BE(0);
-    let hex = buffReversed.toString('hex');
+    var hex = buffReversed.toString('hex');
     return hex;
 }
 

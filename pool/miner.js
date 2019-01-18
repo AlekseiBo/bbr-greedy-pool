@@ -33,9 +33,9 @@ class Miner {
     static async executeMethod(method, params, address, reply, message) {
         switch (method) {
             case 'login':
-                let loggedIn = await login(params, reply);
-                if (loggedIn) {
-                    let difficulty = BlockTemplate.current().difficulty;
+                let requestedDiff = await login(params, reply);
+                if (requestedDiff >= 0) {
+                    let difficulty = (requestedDiff === 0) ? BlockTemplate.current().difficulty : requestedDiff;
                     let id = uid();
 
                     var miner = new Miner(id, params.login, params.pass, address, difficulty, message);
@@ -92,7 +92,7 @@ class Miner {
     getJob() {
         const currentTemplate = BlockTemplate.current()
         let blob = currentTemplate.nextBlob();
-        let target = share.getTargetHex(this);
+        var target = share.getTargetHex(this);
 
         var newJob = {
             id: uid(),
@@ -107,7 +107,7 @@ class Miner {
             this.validJobs.shift();
 
         let addms = this.addendum;
-        let reply = {
+        var reply = {
             id: this.id,
             job: {
                 blob: blob,
