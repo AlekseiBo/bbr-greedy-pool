@@ -1,0 +1,13 @@
+{
+  "name": "bbr-pool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bignum": "^0.13.0",
+    "cryptonote-util": "https://github.com/AlekseiBo/node-cryptonote-util.git",
+    "multi-hashing": "https://github.com/AlekseiBo/node-multi-hashing.git"
+  }
+}
