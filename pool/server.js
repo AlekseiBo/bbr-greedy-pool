@@ -66,7 +66,7 @@ function startPoolServer() {
                         try {
                             jsonData = JSON.parse(message);
                         }
-                        catch (e) {
+                        catch (error) {
                             if (message.indexOf('GET /') === 0) {
                                 if (message.includes('HTTP/1.1')) {
                                     socket.end('HTTP/1.1' + httpResponse);

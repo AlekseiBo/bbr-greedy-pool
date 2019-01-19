@@ -19,11 +19,13 @@
     },
 
     "share" : {
-        "timeout" : 600000
+        "timeout" : 600000,
+        "difficulty" : 5000000
     },
 
 
     "address" : "1GWbUQs8amwhXqQ8YBBbpKHywY8wnYKBkauZQnKZE4XwHjUfk4PoMWdJd1ugm62kbAcdBXB92stju9NY16beWwibKM2sBBP",
+    "diffSeparator" : "_",
     "refreshBlockInterval" : 1000
 
 }

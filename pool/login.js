@@ -3,7 +3,7 @@ const rpc = require('../rpc');
 const BlockTemplate = require('./blocktemplate');
 const cnUtil = require('cryptonote-util');
 
-const fixedDiffSeparator = '_';
+const fixedDiffSeparator = config.pool.diffSeparator;
 const addressBase58Prefix = cnUtil.address_decode(Buffer.from(config.pool.address));
 
 async function login(params, reply) {
@@ -18,14 +18,13 @@ async function login(params, reply) {
         reply('missing login');
         return -1;
     }
-    
-    let fixedDiff = 0;
-    let loginSplit = login.split(fixedDiffSeparator);
-    login = loginSplit[0];
-    if(login.length > 1) {
+
+    let fixedDiff = config.pool.share.difficulty;
+    if (login.includes(fixedDiffSeparator)) {
+        let loginSplit = login.split(fixedDiffSeparator);
+        login = loginSplit[0];
         fixedDiff = loginSplit[1];
     }
-
 
     if (login.indexOf('@') === 0) {
         login = login.substr(1);
